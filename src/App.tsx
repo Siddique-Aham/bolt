@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Zap, Brain, Sparkles, CheckCircle2 } from 'lucide-react';
+import { Zap, Brain, Sparkles, CheckCircle2, MessageSquare, Code2, BookOpen, Trophy, ExternalLink } from 'lucide-react';
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
@@ -40,6 +40,13 @@ function App() {
     { name: 'About', id: 'about' },
     { name: 'Features', id: 'features' },
     { name: 'Pricing', id: 'pricing' },
+  ];
+
+  const sidebarItems = [
+    { name: 'Mock Interview', icon: MessageSquare, id: 'interview' },
+    { name: 'Code Challenge', icon: Code2, id: 'challenge' },
+    { name: 'Learning Path', icon: BookOpen, id: 'learning' },
+    { name: 'Achievements', icon: Trophy, id: 'achievements' },
   ];
 
   const features = [
@@ -116,6 +123,26 @@ function App() {
         </div>
       </nav>
 
+      {/* Left Sidebar */}
+      <div className="fixed left-0 top-1/2 -translate-y-1/2 z-50 bg-white/5 backdrop-blur-sm border-r border-white/10 py-6 px-4 rounded-r-2xl">
+        <div className="flex flex-col gap-6">
+          {sidebarItems.map((item) => {
+            const Icon = item.icon;
+            return (
+              <button
+                key={item.id}
+                className="group relative flex flex-col items-center gap-2 hover:scale-110 transition-transform"
+                title={item.name}
+              >
+                <div className="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center hover:bg-cyan-400/20 transition-colors">
+                  <Icon className="w-5 h-5 text-gray-400 group-hover:text-cyan-400 transition-colors" />
+                </div>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
       {/* Side Navigation Bar */}
       <div className="fixed right-8 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-3">
         {navigation.map((item) => (
@@ -164,13 +191,26 @@ function App() {
             transform: 'translateX(-50%) translateY(50%)',
           }}></div>
 
-          {/* Horizon Glow Arc */}
+          {/* Horizon Glow Arc - Half Circle */}
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[200%] aspect-square rounded-full" style={{
             border: '2px solid transparent',
             borderTopColor: 'rgba(139, 92, 246, 0.6)',
             boxShadow: '0 -2px 40px rgba(139, 92, 246, 0.4)',
             transform: 'translateX(-50%) translateY(50%)',
           }}></div>
+
+          {/* Curved Line Element - Slightly Curved */}
+          <div className="absolute bottom-[180px] left-1/2 -translate-x-1/2 w-[60%]">
+            <svg viewBox="0 0 1000 100" className="w-full" style={{ height: '100px' }}>
+              <path
+                d="M 0 50 Q 250 20, 500 50 T 1000 50"
+                stroke="rgba(139, 92, 246, 0.6)"
+                strokeWidth="2"
+                fill="none"
+                style={{ filter: 'drop-shadow(0 0 20px rgba(139, 92, 246, 0.5))' }}
+              />
+            </svg>
+          </div>
         </div>
 
         <div className="max-w-7xl mx-auto relative z-10 w-full">
@@ -421,6 +461,109 @@ function App() {
           </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="relative bg-black border-t border-white/10 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {/* Brand */}
+            <div>
+              <h3 className="text-xl font-display font-medium mb-6">CodeAI Pro</h3>
+            </div>
+
+            {/* Resources */}
+            <div>
+              <h4 className="text-sm font-medium text-white mb-4">Resources</h4>
+              <ul className="space-y-3">
+                <li>
+                  <a href="#" className="text-sm text-gray-400 hover:text-cyan-400 transition-colors flex items-center gap-2">
+                    Support <ExternalLink className="w-3 h-3" />
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-sm text-gray-400 hover:text-cyan-400 transition-colors flex items-center gap-2">
+                    Blog <ExternalLink className="w-3 h-3" />
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-sm text-gray-400 hover:text-cyan-400 transition-colors flex items-center gap-2">
+                    Gallery <ExternalLink className="w-3 h-3" />
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-sm text-gray-400 hover:text-cyan-400 transition-colors flex items-center gap-2">
+                    Status <ExternalLink className="w-3 h-3" />
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Company */}
+            <div>
+              <h4 className="text-sm font-medium text-white mb-4">Company</h4>
+              <ul className="space-y-3">
+                <li>
+                  <a href="#" className="text-sm text-gray-400 hover:text-cyan-400 transition-colors">
+                    Careers
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-sm text-gray-400 hover:text-cyan-400 transition-colors">
+                    Privacy
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-sm text-gray-400 hover:text-cyan-400 transition-colors">
+                    Terms
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Social */}
+            <div>
+              <h4 className="text-sm font-medium text-white mb-4">Social</h4>
+              <ul className="space-y-3">
+                <li>
+                  <a href="#" className="text-sm text-gray-400 hover:text-cyan-400 transition-colors flex items-center gap-2">
+                    <span>Discord</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-sm text-gray-400 hover:text-cyan-400 transition-colors flex items-center gap-2">
+                    <span>LinkedIn</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-sm text-gray-400 hover:text-cyan-400 transition-colors flex items-center gap-2">
+                    <span>YouTube</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-sm text-gray-400 hover:text-cyan-400 transition-colors flex items-center gap-2">
+                    <span>Twitter/X</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-sm text-gray-400 hover:text-cyan-400 transition-colors flex items-center gap-2">
+                    <span>Instagram</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-sm text-gray-400 hover:text-cyan-400 transition-colors flex items-center gap-2">
+                    <span>Reddit</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Copyright */}
+          <div className="mt-12 pt-8 border-t border-white/10 text-center">
+            <p className="text-sm text-gray-400">© 2025 StackBlitz - All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
